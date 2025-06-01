@@ -5,7 +5,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-    name: 'RestaurantList',    
+    name: 'RestaurantList',
+    mounted() {
+        this.loadRestaurants();
+    },
+    methods: mapActions({
+        loadRestaurants: 'restaurants/load'
+    })    
 }
 </script>
