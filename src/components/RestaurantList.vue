@@ -1,11 +1,19 @@
 <template>
     <div>
-        <h1>Restaurant List</h1>
+        <ul>
+            <li 
+                v-for="restaurant in restaurants"
+                :key="restaurant.id"
+                data-testid="restaurant"
+            >
+                {{ restaurant.name }}
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
     name: 'RestaurantList',
@@ -14,6 +22,9 @@ export default {
     },
     methods: mapActions({
         loadRestaurants: 'restaurants/load'
-    })    
+    }),
+    computed: mapState({
+        restaurants: state => state.restaurants.records
+    }),   
 }
 </script>
